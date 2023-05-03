@@ -16,7 +16,7 @@ import urllib.request
 
 parser = argparse.ArgumentParser(
 					prog='dico_tad',
-					description='Création de wordlists à partir de pages web ou de fichiers avec suppression des doublons.\nVous aurez la possibilité de mettre les mots en minuscules, en majuscules ou tel quel, et de les filtrer en fonction de leur taille.\nSi vous ne précisez pas de fichier de sortie (-s), la liste sera affichée dans la sortie standard.',
+					description='Création de wordlists à partir de pages web, de fichiers ou de StdIn avec suppression des doublons.\nVous aurez la possibilité de mettre les mots en minuscules, en majuscules ou tel quel, et de les filtrer en fonction de leur taille.\nSi vous ne précisez pas de fichier de sortie (-s), la liste sera affichée dans la sortie standard.',
 					epilog='Ce programme a été créé par hackoys.')
 
 parser.add_argument('chemin', help='Chemins des fichiers, dossiers ou URL des pages web (séparés par des virgules si plusieurs, - récupèrera l\'entrée standard).')
