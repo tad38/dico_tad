@@ -22,7 +22,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('chemin', help='Chemins des fichiers, dossiers ou URL des pages web (séparés par des virgules si plusieurs, - récupèrera l\'entrée standard).')
 parser.add_argument('-s', '--sortie', help='Chemin du fichier dans lequel écrire la liste de mots.', required=False)
 parser.add_argument('-t', '--taille', help='Taille des mots acceptés. Ex: 2-4 = de 2 caractères à 4 caractères inclus. 0=infini. (Par défaut 2-0)', required=False)
-parser.add_argument('-r', '--recursif', help='Rechercher aussi dans les sous-dossiers. (uniquement pour un chemin local. Par défaut: non)', required=False)
+parser.add_argument('-r', '--recursif', help='Rechercher aussi dans les sous-dossiers. (uniquement pour un chemin local. Par défaut: non)', required=False, action='store_true')
 parser.add_argument('--maj', help='Ajouter les mots convertis en majuscules dans la liste. (Par défaut: non)', action='store_true')
 parser.add_argument('--min', help='Ajouter les mots convertis en minuscules dans la liste. (Par défaut: non)', action='store_true')
 parser.add_argument('--tel', help='Ajouter les mots dans la liste tels qu\'ils ont été trouvés. (Par défaut: oui)', action='store_true')
