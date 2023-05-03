@@ -15,7 +15,7 @@ Si vous ne précisez pas de fichier de sortie (-s), la liste sera affichée dans
 ## Arguments optionnels
 
 | Nom court | Nom long | Description |
-| - | - | - |
+| ------------ | ------------------ | - |
 | `-s FICHIER` | `--sortie FICHIER` | Chemin du fichier dans lequel écrire la liste de mots. (par défaut, la sortie se fait sur la sortie standard: StdOut) |
 | `-t TAILLE` | `--taille TAILLE` | Taille des mots acceptés. Ex: 2-4 = de 2 caractères à 4 caractères inclus. 0=infini. (Par défaut 2-0) |
 | `-r` | `--recursif` | Rechercher aussi dans les sous-dossiers. (uniquement pour un chemin local. Par défaut: non) |
