@@ -9,6 +9,7 @@ import argparse
 import os
 import sys
 import urllib.request
+import locale
 
 ###############################################################
 ############################################# AIDE ET ARGUMENTS
@@ -46,6 +47,7 @@ minuscule = False
 tel_que = True
 accents = False
 recursif = False
+creation_fichier = False
 
 ###############################################################
 ##################################################### FONCTIONS
@@ -54,6 +56,7 @@ recursif = False
 # Suivant les types de conversions autorises j'ajoute le mot à la liste 
 # et l'affiche en gardant ou pas les accents
 def ajouter_mot(par_mot):
+	global creation_fichier
 	if ttaille[1] > 0 and len(par_mot) > ttaille[1]: return
 	mot = par_mot
 	
@@ -65,6 +68,18 @@ def ajouter_mot(par_mot):
 		
 	# Gestion de la casse
 	if sortie != False:
+		if creation_fichier == False:
+			try: 
+				fichier = open(sortie, "w")
+				creation_fichier = True
+			except IOError as e:
+				print("# " + str(e))
+				exit(2)
+		else:
+			try: fichier = open(sortie, "a")
+			except IOError as e:
+				print("# " + str(e))
+				exit(2)
 		if tel_que:
 			if not mot in tmots:
 				tmots.append(mot)
@@ -79,6 +94,7 @@ def ajouter_mot(par_mot):
 			if not mot in tmots:
 				tmots.append(mot)
 				fichier.write(mot + "\n")
+		fichier.close()
 	else:
 		if tel_que:
 			if not mot in tmots:
@@ -121,7 +137,7 @@ def analyser_chaine(par_str):
 # Lire un fichier et analyser la chaine qui en retourne
 def analyser_fichier(par_chem):
 	try:
-		with open(par_chem, "r") as f:
+		with open(par_chem, "r", encoding="ISO-8859-1") as f:
 			analyser_chaine(f.read())
 	except IOError as e:
 		print("# " + str(e))
@@ -178,10 +194,6 @@ if args.taille:
 # Redirection de la sortie vers un fichier si nécéssaire
 if args.sortie:
 	sortie = args.sortie
-	try: fichier = open(sortie, "w")
-	except IOError as e:
-		print("# " + str(e))
-		exit(2)
 		
 # Lecture du ou des chemins et analyse (dossier, fichier ou url)
 if args.chemin.find(',') >= 0:
@@ -198,6 +210,5 @@ for i in range(0, len(tchemins)):
 		analyser_dossier(tchemins[i])
 	else:
 		analyser_url(tchemins[i])			# sinon c'est une URL
-if sortie != False: fichier.close()
 
 exit(0)
